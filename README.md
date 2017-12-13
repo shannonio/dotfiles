@@ -6,6 +6,10 @@ Your dotfiles are how you personalize your system. These are mine.
 
 [Why?](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
+## ergodox layout
+
+http://configure.ergodox-ez.com/keyboard_layouts/qzrang/edit
+
 ## install
 
 Run this:
