@@ -1,0 +1,1 @@
+{"source":".nuclide-text-editor-container {\n  flex-grow: 1;\n  position: relative;\n}\n.nuclide-text-editor-container atom-text-editor {\n  width: 100%;\n}\n.nuclide-text-editor-container.no-auto-grow atom-text-editor {\n  position: absolute;\n  height: 100%;\n}\n"}

@@ -1,0 +1,166 @@
+"" .d8888b. 888                                            d8b          ""
+"" d88P  Y88b888                                            88P         ""
+"" Y88b.     888                                            8P          ""
+"" "Y888b.  88888b.  8888b. 88888b. 88888b.  .d88b. 88888b." .d8888b    ""
+""    "Y88b.888 "88b    "88b888 "88b888 "88bd88""88b888 "88b 88K        ""
+""      "888888  888.d888888888  888888  888888  888888  888 "Y8888b.   ""
+"" Y88b  d88P888  888888  888888  888888  888Y88..88P888  888      X88  ""
+"" "Y8888P" 888  888"Y888888888  888888  888 "Y88P" 888  888  88888P'   ""
+""                                                                      ""
+""                                                                      ""
+""                                                                      ""
+""        888     8888888888888b     d8888888888b.  .d8888b.            ""
+""        888     888  888  8888b   d8888888   Y88bd88P  Y88b           ""
+""        888     888  888  88888b.d88888888    888888    888           ""
+""        Y88b   d88P  888  888Y88888P888888   d88P888                  ""
+""         Y88b d88P   888  888 Y888P 8888888888P" 888                  ""
+""          Y88o88P    888  888  Y8P  888888 T88b  888    888           ""
+""           Y888P     888  888   "   888888  T88b Y88b  d88P           ""
+""            Y8P    8888888888       888888   T88b "Y8888P"            ""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"" Editor Theme
+color onedark
+
+
+"" Fonts
+set macligatures
+set guifont=Fira\ Code:h12
+
+"" Code Style
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+
+
+"" Don't show the intro message when starting vim.
+set shortmess=I
+
+
+"" Globally ignore unhelpful folders/files
+set wildignore+=*/vendor/bundle/*
+set wildignore+=*/node_modules/*
+set wildignore+=*/tags
+
+
+"" Turn off error bells
+set noerrorbells visualbell t_vb=
+
+
+"" Move lines up/down
+nnoremap <A-j> :m+<CR>==
+nnoremap <A-k> :m-2<CR>==
+inoremap <A-j> <Esc>:m+<CR>==gi
+inoremap <A-k> <Esc>:m-2<CR>==gi
+vnoremap <A-j> :m'>+<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
+
+
+"" Always ignore whitespaces with gb
+nnoremap <Leader>gb :Gblame -w<cr>
+
+
+"" Copy current filename to system clipboard
+nnoremap <Leader>cf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+
+
+"" Copy current buffer path relative to root of VIM session to system clipboard
+nnoremap <Leader>cp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+
+
+"" CtrlP aliasing
+map <C-t> :CtrlP<CR>
+map <D-t> :CtrlP<CR>
+map <D-p> :CtrlP<CR>
+
+
+"" CtrlP Customizations
+let g:ctrlp_working_path_mode = 0 " start in the current working instead of traversing up
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_max_files = 15000
+  let g:ctrlp_max_height = 20
+  let g:ctrlp_use_caching = 0
+endif
+
+"" NERDCommenter Customizations
+let NERDSpaceDelims = 1
+
+
+"" Needed for Markdown previewer
+filetype plugin on
+
+
+"" Save file on buffer change
+:set autowrite
+
+
+"" Map CMD+\ to Hide/Show Nerd Tree
+nmap <D-\> :NERDTreeToggle<CR>
+imap <D-\> :NERDTreeToggle<CR>
+vmap <D-\> :NERDTreeToggle<CR>
+
+
+"" Map Shift + Tab to Change between open Split Tabs
+nmap <S-Tab> <C-w>w
+
+
+" Fix my JS (eslint auto fix)
+noremap <leader>f :Fixmyjs<CR>
+let g:fixmyjs_rc_local = 1
+
+" This allows buffers to be hidden if you've modified a buffer.
+" This is almost a must if you wish to use buffers in this way.
+set hidden
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>T :enew<cr>
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
+
+" Select last pasted block
+nnoremap <leader>gp `[v`]
+
+"" Copy full path of current node into the system clipboard
+call NERDTreeAddKeyMap({
+  \ 'key': ',cf',
+  \ 'callback': 'NERDTreeCopyNodePath',
+  \ 'quickhelpText': 'put full path of current node into the system clipboard' })
+
+function! NERDTreeCopyNodePath()
+  let n = g:NERDTreeFileNode.GetSelected()
+  if n != {}
+    let @*=n.path.str()
+    echo "Copied file name to clipboard"
+  endif
+endfunction
+
+
+"" Copy current node path relative to root of VIM session to system clipboard
+call NERDTreeAddKeyMap({
+  \ 'key': ',cp',
+  \ 'callback': 'NERDTreeCopyRelativeNodePath',
+  \ 'quickhelpText': 'put full path of current node into the system clipboard' })
+
+function! NERDTreeCopyRelativeNodePath()
+  let n = g:NERDTreeFileNode.GetSelected()
+  if n != {}
+    let @*=fnamemodify(n.path.str(), ':.')
+    echo "Copied file path to clipboard"
+  endif
+endfunction

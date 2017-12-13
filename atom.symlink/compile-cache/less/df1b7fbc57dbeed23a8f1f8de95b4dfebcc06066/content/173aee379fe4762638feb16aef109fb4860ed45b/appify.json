@@ -1,0 +1,1 @@
+{"digest":"5f0f25ed32f7ffc03ae6daa49d68c66656ec0810","css":"nuclide-react-mount-root {\n  cursor: default;\n  -webkit-user-select: none;\n}\nnuclide-react-mount-root form,\nnuclide-react-mount-root input,\nnuclide-react-mount-root optgroup,\nnuclide-react-mount-root select,\nnuclide-react-mount-root textarea {\n  -webkit-app-region: no-drag;\n}\n","imports":[],"version":1}

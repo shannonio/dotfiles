@@ -1,0 +1,1 @@
+{"source":".gutter .line-number {\n  background-size: 0px;\n  transition: background-size 0.5s;\n}\n.gutter .line-number.quickfix {\n  background-image: url(atom://atom-typescript/images/light-bulb.png);\n  background-size: 16.66666667px;\n  background-repeat: no-repeat;\n  background-position: right center;\n}\n"}

@@ -1,0 +1,1 @@
+{"source":".busy-signal-status-bar.icon::before {\n  transform: scale(0.8);\n}\n.busy-signal-status-bar.loading-spinner-tiny {\n  vertical-align: middle;\n  display: inline-block;\n  cursor: wait;\n}\n"}

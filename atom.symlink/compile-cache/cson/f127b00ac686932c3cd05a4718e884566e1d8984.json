@@ -1,0 +1,1 @@
+{"context-menu":{".overlayer":{"Enable git-merge-conflicts":"git-merge-conflicts:toggle"}},"menu":[{"label":"Packages","submenu":[{"label":"git-merge-conflicts","submenu":[{"label":"Toggle","command":"git-merge-conflicts:toggle"}]}]}]}

@@ -1,0 +1,18 @@
+[user]
+	name = Shannon Bertucci
+	email = shannon.bertucci@gmail.com
+
+[push]
+	default = simple
+
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  fu = reset --hard
+  sb = shortlog -s -n
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  yep = !git pull --rebase && git remote prune origin
+  standup = !git lg --since='yesterday' --author=`git config user.email`
+  su = !git standup

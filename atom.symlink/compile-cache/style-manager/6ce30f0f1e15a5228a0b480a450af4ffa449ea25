@@ -1,0 +1,1 @@
+{"source":".nuclide-ui-empty-state-container {\n  display: flex;\n  flex-grow: 1;\n  justify-content: center;\n}\n.nuclide-ui-empty-state-message {\n  align-self: center;\n  text-align: center;\n  padding: 10px;\n}\n"}

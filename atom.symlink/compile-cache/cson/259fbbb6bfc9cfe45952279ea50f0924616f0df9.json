@@ -1,0 +1,1 @@
+{"context-menu":{".overlayer":{"Enable angularjs":"angularjs:toggle"}},"menu":[{"label":"Packages","submenu":[{"label":"angularjs","submenu":[{"label":"Toggle","command":"angularjs:toggle"}]}]}]}

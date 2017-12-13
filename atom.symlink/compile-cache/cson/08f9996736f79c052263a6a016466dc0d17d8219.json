@@ -1,0 +1,1 @@
+{".editor:not(.mini)":{"cmd-x":"core:copy,editor:delete-line"}}

@@ -1,0 +1,1 @@
+{"context-menu":{"atom-text-editor":[{"label":"Run eslint --fix","command":"atom-eslint-fix:run"}],".tree-view .file":[{"label":"Run eslint --fix","command":"atom-eslint-fix:run-tree-view"}]},"menu":[{"label":"Packages","submenu":[{"label":"atom-eslint-fix","submenu":[{"label":"Run eslint --fix","command":"atom-eslint-fix:run"}]}]}]}

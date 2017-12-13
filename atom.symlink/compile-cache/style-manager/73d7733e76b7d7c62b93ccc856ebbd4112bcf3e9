@@ -1,0 +1,1 @@
+{"source":".diagnostics-status-bar-highlight {\n  padding: 3px 4px;\n}\n.diagnostics-status-bar-highlight .icon {\n  vertical-align: middle;\n}\n.diagnostics-status-bar-highlight .icon::before {\n  transform: scale(0.7);\n  top: 0 !important;\n}\n"}

@@ -1,0 +1,1 @@
+{".source.json":{"filesGlob":{"prefix":"fg","body":"\"filesGlob\": [\n    \"**/*.ts\",\n    \"**/*.tsx\",\n    \"!node_modules/**\"\n],"}}}

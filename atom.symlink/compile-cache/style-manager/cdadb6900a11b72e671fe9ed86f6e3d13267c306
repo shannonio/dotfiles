@@ -1,0 +1,1 @@
+{"source":".atomts-panel-body {\n  height: 170px;\n  scroll-y: auto;\n}\n.atomts-panel-body,\n.atomts-panel-header {\n  padding: 6px;\n}\n.atomts-main-panel-view .build-progress.warn::-webkit-progress-value {\n  background-color: #ff9b00 !important;\n}\n.atomts-main-panel-view .section-pending {\n  opacity: .5;\n}\n"}

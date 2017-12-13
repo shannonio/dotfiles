@@ -1,0 +1,1 @@
+{"source":".atomts-overlay {\n  background: rgba(0, 0, 0, 0.9);\n  border: 9px solid rgba(0, 0, 0, 0.9);\n}\n.atomts-overlay li {\n  padding: 5px;\n}\n"}
