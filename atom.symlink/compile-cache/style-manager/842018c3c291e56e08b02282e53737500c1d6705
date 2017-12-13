@@ -1,1 +1,0 @@
-{"source":"@keyframes RotatingBackground {\n  0% {\n    background-position-x: 0%;\n  }\n  100% {\n    background-position-x: 100%;\n  }\n}\n"}
