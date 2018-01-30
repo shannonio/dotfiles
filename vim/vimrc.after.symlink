@@ -25,7 +25,7 @@ color onedark
 
 
 "" Fonts
-set macligatures
+"set macligatures
 set guifont=Fira\ Code:h12
 
 "" Code Style
@@ -68,6 +68,11 @@ nnoremap <Leader>cf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboar
 "" Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader>cp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
 
+"" Use MatchIt
+runtime macros/matchit.vim
+
+"" Nerdtree show file in tree
+nmap <leader>n :NERDTreeFind<CR>
 
 "" CtrlP aliasing
 map <C-t> :CtrlP<CR>
@@ -107,14 +112,34 @@ vmap <D-\> :NERDTreeToggle<CR>
 "" Map Shift + Tab to Change between open Split Tabs
 nmap <S-Tab> <C-w>w
 
-
-" Fix my JS (eslint auto fix)
-noremap <leader>f :Fixmyjs<CR>
-let g:fixmyjs_rc_local = 1
-
 " This allows buffers to be hidden if you've modified a buffer.
 " This is almost a must if you wish to use buffers in this way.
 set hidden
+
+" Enable Things for Syntastic
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_ruby_rubocop_exec = '/Users/shannonbertucci/.rbenv/shims/rubocop'
+
+let g:syntastic_javascript_checkers=['eslint']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_enable_signs=1
+let g:syntastic_enable_balloons=1
+let g:syntastic_enable_highlighting=1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'active' }
+
+" Run syntastic on the current file
+nnoremap <Leader>ln :SyntasticCheck<CR>
+
+" Replace the default dictionary completion with fzf-based fuzzy completion
+inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
 
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
