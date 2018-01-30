@@ -8,7 +8,7 @@ Your dotfiles are how you personalize your system. These are mine.
 
 ## ergodox layout
 
-http://configure.ergodox-ez.com/keyboard_layouts/qzrang/edit
+http://configure.ergodox-ez.com/keyboard_layouts/qzbono/edit
 
 ## install
 
