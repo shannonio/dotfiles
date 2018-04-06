@@ -79,17 +79,33 @@ map <C-t> :CtrlP<CR>
 map <D-t> :CtrlP<CR>
 map <D-p> :CtrlP<CR>
 
+map <Leader>bo :CtrlPBuffer<CR>
+
 
 "" CtrlP Customizations
 let g:ctrlp_working_path_mode = 0 " start in the current working instead of traversing up
-if executable('ag')
-  let g:ackprg = 'ag --nogroup --nocolor --column'
 
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ctrlp_max_files = 15000
+let g:ctrlp_prompt_mappings = {
+  \ 'AcceptSelection("h")': ['<c-h>'],
+  \ }
+
+if executable('rg')
+  " use ripgrep instead of ack for speed
+  let g:ackprg = 'rg --vimgrep --no-heading'
+
+  let g:ctrlp_user_command = 'rg %s --files --maxdepth=10 --color=never'
   let g:ctrlp_max_height = 20
   let g:ctrlp_use_caching = 0
 endif
+
+" if executable('ag')
+  " let g:ackprg = 'ag --nogroup --nocolor --column'
+
+  " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " let g:ctrlp_max_files = 15000
+  " let g:ctrlp_max_height = 20
+  " let g:ctrlp_use_caching = 0
+" endif
 
 "" NERDCommenter Customizations
 let NERDSpaceDelims = 1
@@ -98,6 +114,8 @@ let NERDSpaceDelims = 1
 "" Needed for Markdown previewer
 filetype plugin on
 
+" JSX on for all .js
+let g:jsx_ext_required = 0
 
 "" Save file on buffer change
 :set autowrite

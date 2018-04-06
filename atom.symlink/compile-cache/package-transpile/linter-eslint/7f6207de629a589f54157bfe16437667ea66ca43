@@ -1,0 +1,77 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _eslintRuleDocumentation = require('eslint-rule-documentation');
+
+var _eslintRuleDocumentation2 = _interopRequireDefault(_eslintRuleDocumentation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Private properties
+const rules = Symbol('rules');
+
+/**
+ * Stores a list of rules from ESLint
+ */
+class Rules {
+  /**
+   * Instantiates a Rules object, optionally with an existing list of rules
+   * @param {Array} newRules Array of Arrays of the rule and properties
+   */
+  constructor(newRules) {
+    this.replaceRules(newRules);
+  }
+
+  /**
+   * Process the updated rules into the local Map and call further update functions
+   * @param  {Array} newRules Array of Arrays of the rule and properties
+   */
+  replaceRules(newRules) {
+    this[rules] = new Map(newRules);
+  }
+
+  /**
+   * [getFixableRules description]
+   * @return {Array} The ruleIds of the currently known fixable rules
+   */
+  getFixableRules() {
+    return Array.from(this[rules]).reduce((fixable, [rule, props]) => {
+      if (props && props.meta && props.meta.fixable) {
+        return [...fixable, rule];
+      }
+      return fixable;
+    }, []);
+  }
+
+  /**
+   * Get the URL of the documentation for a rule, either from the rule's own
+   * metadata, from eslint-rule-documentation's known rules, or the fallback URL
+   * on how to add it to eslint-rule-documentation.
+   * @param  {String} ruleId The rule ID to get the documentation URL for
+   * @return {String}        URL of the rule documentation
+   */
+  getRuleUrl(ruleId) {
+    const props = this[rules].get(ruleId);
+    if (props && props.meta && props.meta.docs && props.meta.docs.url) {
+      // The rule has a documentation URL specified in its metadata
+      return props.meta.docs.url;
+    }
+
+    // The rule didn't specify a URL in its metadata, or was not currently known
+    // somehow. Attempt to determine a URL using eslint-rule-documentation.
+    return (0, _eslintRuleDocumentation2.default)(ruleId).url;
+  }
+
+  /**
+   * Return the known rules.
+   * @return {Map} The currently known rules
+   */
+  getRules() {
+    return new Map(this[rules]);
+  }
+}
+exports.default = Rules;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJ1bGVzLmpzIl0sIm5hbWVzIjpbInJ1bGVzIiwiU3ltYm9sIiwiUnVsZXMiLCJjb25zdHJ1Y3RvciIsIm5ld1J1bGVzIiwicmVwbGFjZVJ1bGVzIiwiTWFwIiwiZ2V0Rml4YWJsZVJ1bGVzIiwiQXJyYXkiLCJmcm9tIiwicmVkdWNlIiwiZml4YWJsZSIsInJ1bGUiLCJwcm9wcyIsIm1ldGEiLCJnZXRSdWxlVXJsIiwicnVsZUlkIiwiZ2V0IiwiZG9jcyIsInVybCIsImdldFJ1bGVzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTs7Ozs7O0FBRUE7QUFDQSxNQUFNQSxRQUFRQyxPQUFPLE9BQVAsQ0FBZDs7QUFFQTs7O0FBR2UsTUFBTUMsS0FBTixDQUFZO0FBQ3pCOzs7O0FBSUFDLGNBQVlDLFFBQVosRUFBc0I7QUFDcEIsU0FBS0MsWUFBTCxDQUFrQkQsUUFBbEI7QUFDRDs7QUFFRDs7OztBQUlBQyxlQUFhRCxRQUFiLEVBQXVCO0FBQ3JCLFNBQUtKLEtBQUwsSUFBYyxJQUFJTSxHQUFKLENBQVFGLFFBQVIsQ0FBZDtBQUNEOztBQUVEOzs7O0FBSUFHLG9CQUFrQjtBQUNoQixXQUFPQyxNQUFNQyxJQUFOLENBQVcsS0FBS1QsS0FBTCxDQUFYLEVBQXdCVSxNQUF4QixDQUErQixDQUFDQyxPQUFELEVBQVUsQ0FBQ0MsSUFBRCxFQUFPQyxLQUFQLENBQVYsS0FBNEI7QUFDaEUsVUFBSUEsU0FBU0EsTUFBTUMsSUFBZixJQUF1QkQsTUFBTUMsSUFBTixDQUFXSCxPQUF0QyxFQUErQztBQUM3QyxlQUFPLENBQUMsR0FBR0EsT0FBSixFQUFhQyxJQUFiLENBQVA7QUFDRDtBQUNELGFBQU9ELE9BQVA7QUFDRCxLQUxNLEVBS0osRUFMSSxDQUFQO0FBTUQ7O0FBRUQ7Ozs7Ozs7QUFPQUksYUFBV0MsTUFBWCxFQUFtQjtBQUNqQixVQUFNSCxRQUFRLEtBQUtiLEtBQUwsRUFBWWlCLEdBQVosQ0FBZ0JELE1BQWhCLENBQWQ7QUFDQSxRQUFJSCxTQUFTQSxNQUFNQyxJQUFmLElBQXVCRCxNQUFNQyxJQUFOLENBQVdJLElBQWxDLElBQTBDTCxNQUFNQyxJQUFOLENBQVdJLElBQVgsQ0FBZ0JDLEdBQTlELEVBQW1FO0FBQ2pFO0FBQ0EsYUFBT04sTUFBTUMsSUFBTixDQUFXSSxJQUFYLENBQWdCQyxHQUF2QjtBQUNEOztBQUVEO0FBQ0E7QUFDQSxXQUFPLHVDQUFRSCxNQUFSLEVBQWdCRyxHQUF2QjtBQUNEOztBQUVEOzs7O0FBSUFDLGFBQVc7QUFDVCxXQUFPLElBQUlkLEdBQUosQ0FBUSxLQUFLTixLQUFMLENBQVIsQ0FBUDtBQUNEO0FBdkR3QjtrQkFBTkUsSyIsImZpbGUiOiJydWxlcy5qcyIsInNvdXJjZVJvb3QiOiIvVXNlcnMvc2hhbm5vbmJlcnR1Y2NpLy5kb3RmaWxlcy9hdG9tLnN5bWxpbmsvcGFja2FnZXMvbGludGVyLWVzbGludC9zcmMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgcnVsZVVSSSBmcm9tICdlc2xpbnQtcnVsZS1kb2N1bWVudGF0aW9uJ1xuXG4vLyBQcml2YXRlIHByb3BlcnRpZXNcbmNvbnN0IHJ1bGVzID0gU3ltYm9sKCdydWxlcycpXG5cbi8qKlxuICogU3RvcmVzIGEgbGlzdCBvZiBydWxlcyBmcm9tIEVTTGludFxuICovXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBSdWxlcyB7XG4gIC8qKlxuICAgKiBJbnN0YW50aWF0ZXMgYSBSdWxlcyBvYmplY3QsIG9wdGlvbmFsbHkgd2l0aCBhbiBleGlzdGluZyBsaXN0IG9mIHJ1bGVzXG4gICAqIEBwYXJhbSB7QXJyYXl9IG5ld1J1bGVzIEFycmF5IG9mIEFycmF5cyBvZiB0aGUgcnVsZSBhbmQgcHJvcGVydGllc1xuICAgKi9cbiAgY29uc3RydWN0b3IobmV3UnVsZXMpIHtcbiAgICB0aGlzLnJlcGxhY2VSdWxlcyhuZXdSdWxlcylcbiAgfVxuXG4gIC8qKlxuICAgKiBQcm9jZXNzIHRoZSB1cGRhdGVkIHJ1bGVzIGludG8gdGhlIGxvY2FsIE1hcCBhbmQgY2FsbCBmdXJ0aGVyIHVwZGF0ZSBmdW5jdGlvbnNcbiAgICogQHBhcmFtICB7QXJyYXl9IG5ld1J1bGVzIEFycmF5IG9mIEFycmF5cyBvZiB0aGUgcnVsZSBhbmQgcHJvcGVydGllc1xuICAgKi9cbiAgcmVwbGFjZVJ1bGVzKG5ld1J1bGVzKSB7XG4gICAgdGhpc1tydWxlc10gPSBuZXcgTWFwKG5ld1J1bGVzKVxuICB9XG5cbiAgLyoqXG4gICAqIFtnZXRGaXhhYmxlUnVsZXMgZGVzY3JpcHRpb25dXG4gICAqIEByZXR1cm4ge0FycmF5fSBUaGUgcnVsZUlkcyBvZiB0aGUgY3VycmVudGx5IGtub3duIGZpeGFibGUgcnVsZXNcbiAgICovXG4gIGdldEZpeGFibGVSdWxlcygpIHtcbiAgICByZXR1cm4gQXJyYXkuZnJvbSh0aGlzW3J1bGVzXSkucmVkdWNlKChmaXhhYmxlLCBbcnVsZSwgcHJvcHNdKSA9PiB7XG4gICAgICBpZiAocHJvcHMgJiYgcHJvcHMubWV0YSAmJiBwcm9wcy5tZXRhLmZpeGFibGUpIHtcbiAgICAgICAgcmV0dXJuIFsuLi5maXhhYmxlLCBydWxlXVxuICAgICAgfVxuICAgICAgcmV0dXJuIGZpeGFibGVcbiAgICB9LCBbXSlcbiAgfVxuXG4gIC8qKlxuICAgKiBHZXQgdGhlIFVSTCBvZiB0aGUgZG9jdW1lbnRhdGlvbiBmb3IgYSBydWxlLCBlaXRoZXIgZnJvbSB0aGUgcnVsZSdzIG93blxuICAgKiBtZXRhZGF0YSwgZnJvbSBlc2xpbnQtcnVsZS1kb2N1bWVudGF0aW9uJ3Mga25vd24gcnVsZXMsIG9yIHRoZSBmYWxsYmFjayBVUkxcbiAgICogb24gaG93IHRvIGFkZCBpdCB0byBlc2xpbnQtcnVsZS1kb2N1bWVudGF0aW9uLlxuICAgKiBAcGFyYW0gIHtTdHJpbmd9IHJ1bGVJZCBUaGUgcnVsZSBJRCB0byBnZXQgdGhlIGRvY3VtZW50YXRpb24gVVJMIGZvclxuICAgKiBAcmV0dXJuIHtTdHJpbmd9ICAgICAgICBVUkwgb2YgdGhlIHJ1bGUgZG9jdW1lbnRhdGlvblxuICAgKi9cbiAgZ2V0UnVsZVVybChydWxlSWQpIHtcbiAgICBjb25zdCBwcm9wcyA9IHRoaXNbcnVsZXNdLmdldChydWxlSWQpXG4gICAgaWYgKHByb3BzICYmIHByb3BzLm1ldGEgJiYgcHJvcHMubWV0YS5kb2NzICYmIHByb3BzLm1ldGEuZG9jcy51cmwpIHtcbiAgICAgIC8vIFRoZSBydWxlIGhhcyBhIGRvY3VtZW50YXRpb24gVVJMIHNwZWNpZmllZCBpbiBpdHMgbWV0YWRhdGFcbiAgICAgIHJldHVybiBwcm9wcy5tZXRhLmRvY3MudXJsXG4gICAgfVxuXG4gICAgLy8gVGhlIHJ1bGUgZGlkbid0IHNwZWNpZnkgYSBVUkwgaW4gaXRzIG1ldGFkYXRhLCBvciB3YXMgbm90IGN1cnJlbnRseSBrbm93blxuICAgIC8vIHNvbWVob3cuIEF0dGVtcHQgdG8gZGV0ZXJtaW5lIGEgVVJMIHVzaW5nIGVzbGludC1ydWxlLWRvY3VtZW50YXRpb24uXG4gICAgcmV0dXJuIHJ1bGVVUkkocnVsZUlkKS51cmxcbiAgfVxuXG4gIC8qKlxuICAgKiBSZXR1cm4gdGhlIGtub3duIHJ1bGVzLlxuICAgKiBAcmV0dXJuIHtNYXB9IFRoZSBjdXJyZW50bHkga25vd24gcnVsZXNcbiAgICovXG4gIGdldFJ1bGVzKCkge1xuICAgIHJldHVybiBuZXcgTWFwKHRoaXNbcnVsZXNdKVxuICB9XG59XG4iXX0=

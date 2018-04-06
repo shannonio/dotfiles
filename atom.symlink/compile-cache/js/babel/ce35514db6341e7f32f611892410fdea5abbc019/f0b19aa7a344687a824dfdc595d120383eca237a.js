@@ -1,0 +1,15 @@
+'use babel';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var throwIfFail = function throwIfFail(msg, passed) {
+  if (!passed) {
+    throw new Error(msg);
+  }
+  return true;
+};
+
+exports['default'] = throwIfFail;
+module.exports = exports['default'];
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zaGFubm9uYmVydHVjY2kvLmRvdGZpbGVzL2F0b20uc3ltbGluay9wYWNrYWdlcy9saW50ZXItZXNsaW50L3NyYy92YWxpZGF0ZS90aHJvdy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxXQUFXLENBQUE7Ozs7O0FBRVgsSUFBTSxXQUFXLEdBQUcsU0FBZCxXQUFXLENBQUksR0FBRyxFQUFFLE1BQU0sRUFBSztBQUNuQyxNQUFJLENBQUMsTUFBTSxFQUFFO0FBQ1gsVUFBTSxJQUFJLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQTtHQUNyQjtBQUNELFNBQU8sSUFBSSxDQUFBO0NBQ1osQ0FBQTs7cUJBRWMsV0FBVyIsImZpbGUiOiIvVXNlcnMvc2hhbm5vbmJlcnR1Y2NpLy5kb3RmaWxlcy9hdG9tLnN5bWxpbmsvcGFja2FnZXMvbGludGVyLWVzbGludC9zcmMvdmFsaWRhdGUvdGhyb3cuanMiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIGJhYmVsJ1xuXG5jb25zdCB0aHJvd0lmRmFpbCA9IChtc2csIHBhc3NlZCkgPT4ge1xuICBpZiAoIXBhc3NlZCkge1xuICAgIHRocm93IG5ldyBFcnJvcihtc2cpXG4gIH1cbiAgcmV0dXJuIHRydWVcbn1cblxuZXhwb3J0IGRlZmF1bHQgdGhyb3dJZkZhaWxcbiJdfQ==

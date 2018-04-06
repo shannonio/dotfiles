@@ -1,8 +1,13 @@
 "*":
+  "atom-package-deps":
+    ignored: [
+      "linter-eslint"
+    ]
   core:
     disabledPackages: [
       "linter-ui-default"
       "linter"
+      "vim-mode-plus"
     ]
     telemetryConsent: "no"
   editor:
